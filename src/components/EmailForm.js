@@ -19,6 +19,7 @@ const EmailForm = ({ showMenu, countDown }) => {
     let data = {
       customer_email: email,
     };
+    localStorage.removeItem("userIsSetDate");
 
     setLoader(true);
     axiosAlias

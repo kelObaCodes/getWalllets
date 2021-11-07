@@ -29,7 +29,7 @@ function App() {
 
   const showMenu = (walletDetail) => {
     setWalletData(walletDetail)
-    setIsCountDown(89000)
+    setIsCountDown(1)
   };
 
   return (
