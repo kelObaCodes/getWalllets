@@ -43,7 +43,7 @@ function App() {
             src="https://files.readme.io/e00a6a5-GetWallets_icon_WHITE.svg"
           />
         </center>
-        {!walletData || countDown > 3600  ? (
+        {!walletData  ? (
           <p className="text-center col-white">
             Hello there! let's create your wallet
        

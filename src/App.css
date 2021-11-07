@@ -208,9 +208,9 @@
   background-color: var(--white);
   z-index: 33;
   display: flex;
-  top:60px;
+  top:30px;
   justify-content: center;
-  min-height: 400px;
+  min-height: 500px;
   min-width: 100%;
   
 }

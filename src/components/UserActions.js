@@ -26,6 +26,7 @@ const UserActions = ({ countDown }) => {
     walletDetails && setWalletDetails(walletDetails.data);
     if(countDown > 3600){
         localStorage.removeItem("walletData");
+        localStorage.removeItem("userIsSetDate");
     }
     if (!walletId && countDown < 3600) {
       getWallet();
