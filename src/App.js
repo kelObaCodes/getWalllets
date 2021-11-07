@@ -29,6 +29,7 @@ function App() {
 
   const showMenu = (walletDetail) => {
     setWalletData(walletDetail)
+    setIsCountDown(89000)
   };
 
   return (
@@ -60,11 +61,12 @@ function App() {
 
         <div className="card-cover">
           <CardContainer countDown={countDown}>
-            {countDown > 3600 || !walletData ? (
+            {!walletData ? (
               <EmailForm  showMenu={showMenu} />
             ) : (
               <UserActions countDown={countDown} />
             )}
+           
           </CardContainer>
         </div>
       </header>

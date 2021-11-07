@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import api from "../api";
-import dayjs from "dayjs";
 import axiosAlias from "../http";
 import Loader from "./Loader";
 
-import WalletView from './actions/WalletDetails'
-import TransactionsView from './actions/WalletTransactions'
-import FundWalletView from './actions/FundWallet'
+import WalletView from "./actions/WalletDetails";
+import TransactionsView from "./actions/WalletTransactions";
+import FundWalletView from "./actions/FundWallet";
 
 const UserActions = ({ countDown }) => {
   useEffect(() => {}, []);
@@ -25,6 +24,9 @@ const UserActions = ({ countDown }) => {
 
     walletDetails && setWalletId(walletDetails.data.wallet_id);
     walletDetails && setWalletDetails(walletDetails.data);
+    if(countDown > 3600){
+        localStorage.removeItem("walletData");
+    }
     if (!walletId && countDown < 3600) {
       getWallet();
     }
@@ -47,10 +49,9 @@ const UserActions = ({ countDown }) => {
       });
   };
 
-  const depositFunds = ()=>{
-
-    setActive("fund")
-  }
+  const depositFunds = () => {
+    setActive("fund");
+  };
 
   const getWallet = () => {
     setActive("details");
@@ -130,34 +131,35 @@ const UserActions = ({ countDown }) => {
         </button>
       </div>
 
-
-
       {active === "details" ? (
-      <WalletView
-      walletDetails={walletDetails}
-      />
+        <WalletView walletDetails={walletDetails} />
       ) : null}
-
 
       {active === "transaction" && !loader ? (
-       <TransactionsView
-       transactions={transactions}
-       depositFunds={depositFunds}
-       />
+        <TransactionsView
+          transactions={transactions}
+          depositFunds={depositFunds}
+        />
       ) : null}
-
 
       {active === "fund" && !loader ? (
-      <FundWalletView
-      setAmount={setAmount}
-      amount={amount}
-      fundWallet={fundWallet}
-      setCurrency={setCurrency}
-      />
+        <FundWalletView
+          setAmount={setAmount}
+          amount={amount}
+          fundWallet={fundWallet}
+          setCurrency={setCurrency}
+        />
       ) : null}
 
-
       {loader ? <Loader /> : null}
+      {walletDetails && (
+        <p className="col-grey mb-5 mt-30">
+          {Math.ceil(countDown * 0.016) + " minutes elapsed"}
+         
+        </p>
+        
+      )}
+      <p className="col-grey ft-12">N.B: This wallet app will close after 1 hour</p>
     </div>
   );
 };

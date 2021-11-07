@@ -8,7 +8,7 @@ const EmailForm = ({ showMenu, countDown }) => {
     if (countDown > 3600) {
       localStorage.removeItem("walletData");
     }
-  }, []);
+  }, [countDown]);
 
   const [loader, setLoader] = useState(false);
   const [email, setEmail] = useState("");
